@@ -1,38 +1,26 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
 
 import { NewAppScreen } from '@react-native/new-app-screen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import Home from './NOTECRUD/Home';
+import details from './NOTECRUD/details';
+import AddTodo from './NOTECRUD/AddTodo'
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
+   const Stack = createStackNavigator()
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
-  );
-}
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='home'>
+        <Stack.Screen name='home' component={Home}/>
+        <Stack.Screen name='addTodo' component={AddTodo}/>
+        <Stack.Screen name='details' component={details}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
