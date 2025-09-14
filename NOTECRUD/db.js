@@ -27,6 +27,7 @@ export const getTodos = async db => {
     const rows = results[0].rows;
 
     for (let i = 0; i < rows.length; i++) {
+      //  todos = [...todos, { ...rows.item(i) }];
       todos.push(rows.item(i));
     }
     return todos;
